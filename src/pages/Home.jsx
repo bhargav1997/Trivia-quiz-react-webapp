@@ -8,6 +8,8 @@ const Home = () => {
    const [error, setError] = useState(null);
 
    useEffect(() => {
+      document.title = "Trivia Quiz - Home";
+
       const fetchQuestion = async () => {
          try {
             const response = await fetch("https://opentdb.com/api.php?amount=1&type=boolean");

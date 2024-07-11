@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./Quiz.css";
+import "../styles/Quiz.css";
 
 const Quiz = () => {
    const [categories, setCategories] = useState([]);
@@ -44,6 +44,10 @@ const Quiz = () => {
    };
 
    useEffect(() => {
+      document.title = "Trivia Quiz";
+   }, []);
+
+   useEffect(() => {
       fetchCategories();
       fetchQuestions();
    }, [category, difficulty, type]);
@@ -81,31 +85,37 @@ const Quiz = () => {
             <button onClick={fetchQuestions}>Get Questions</button>
          </div>
          <div className='quiz-questions'>
-            {questions && questions.map((question, index) => (
-               <div key={index} className='quiz-question'>
-                  <p dangerouslySetInnerHTML={{ __html: question.question }} />
-                  {type === "multiple" ? (
-                     question.incorrect_answers.concat(question.correct_answer).map((answer, i) => (
-                        <div key={i}>
-                           <input type='radio' name={`question-${index}`} value={answer} onChange={(e) => handleAnswerChange(e, index)} />
-                           <label dangerouslySetInnerHTML={{ __html: answer }} />
-                        </div>
-                     ))
-                  ) : (
-                     <>
-                        <div>
-                           <input type='radio' name={`question-${index}`} value='True' onChange={(e) => handleAnswerChange(e, index)} />
-                           <label>True</label>
-                        </div>
-                        <div>
-                           <input type='radio' name={`question-${index}`} value='False' onChange={(e) => handleAnswerChange(e, index)} />
-                           <label>False</label>
-                        </div>
-                     </>
-                  )}
-                  {checkAnswer(question, index)}
-               </div>
-            ))}
+            {questions &&
+               questions.map((question, index) => (
+                  <div key={index} className='quiz-question'>
+                     <p dangerouslySetInnerHTML={{ __html: question.question }} />
+                     {type === "multiple" ? (
+                        question.incorrect_answers.concat(question.correct_answer).map((answer, i) => (
+                           <div key={i}>
+                              <input
+                                 type='radio'
+                                 name={`question-${index}`}
+                                 value={answer}
+                                 onChange={(e) => handleAnswerChange(e, index)}
+                              />
+                              <label dangerouslySetInnerHTML={{ __html: answer }} />
+                           </div>
+                        ))
+                     ) : (
+                        <>
+                           <div>
+                              <input type='radio' name={`question-${index}`} value='True' onChange={(e) => handleAnswerChange(e, index)} />
+                              <label>True</label>
+                           </div>
+                           <div>
+                              <input type='radio' name={`question-${index}`} value='False' onChange={(e) => handleAnswerChange(e, index)} />
+                              <label>False</label>
+                           </div>
+                        </>
+                     )}
+                     {checkAnswer(question, index)}
+                  </div>
+               ))}
          </div>
       </div>
    );

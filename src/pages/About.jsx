@@ -1,4 +1,10 @@
+import { useEffect } from "react";
+
 const About = () => {
+   useEffect(() => {
+      document.title = "Trivia Quiz - About";
+   }, []);
+
    return (
       <main id='about'>
          <h2>About</h2>

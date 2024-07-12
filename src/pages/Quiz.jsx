@@ -12,16 +12,18 @@ const Quiz = () => {
    const fetchCategories = async () => {
       const response = await fetch("https://opentdb.com/api_category.php");
       const responseData = await response.json();
-      console.log(responseData);
-      setCategories(responseData.trivia_categories);
+      if (responseData && responseData.trivia_categories) {
+         setCategories(responseData.trivia_categories);
+      }
    };
 
    const fetchQuestions = async () => {
       const url = `https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}&type=${type}`;
       const response = await fetch(url);
       const responseData = await response.json();
-      console.log(responseData);
-      setQuestions(responseData.results);
+      if (responseData.results > 0) {
+         setQuestions(responseData.results);
+      }
    };
 
    const handleAnswerChange = (e, questionIndex) => {

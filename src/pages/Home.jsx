@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Question from "../components/Question";
 
 const Home = () => {
    const [question, setQuestion] = useState(null);
@@ -45,27 +46,7 @@ const Home = () => {
          <h2 id='welcomeMsg'>Welcome to Trivia</h2>
          <p id='welcomeSubMessage'>{"Here's your Random Question"}</p>
 
-         <div id='quizContainer'>
-            <h3>{"True or False :"}</h3>
-
-            {category && question && answer ? (
-               <div id='questionContainer'>
-                  <p id='category'>{category}</p>
-
-                  <p id='questionText' dangerouslySetInnerHTML={{ __html: question }} />
-
-                  <p id='answerText'>{reveal ? answer : ""}</p>
-
-                  <button id='revealAnswer' onClick={revealAnswer} type='button'>
-                     Reveal Answer
-                  </button>
-               </div>
-            ) : error ? (
-               <p id='error'>{error}</p>
-            ) : (
-               <p id='loading'>Loading...</p>
-            )}
-         </div>
+         <Question category={category} question={question} answer={answer} reveal={reveal} revealAnswer={revealAnswer} error={error} />
       </main>
    );
 };

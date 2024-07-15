@@ -46,34 +46,10 @@ npm start
 
 The application will be available at `http://localhost:3000`.
 
-## Code Structure
-
-- `src/Quiz.js`: The main React component that handles the quiz logic and rendering.
-- `src/Quiz.css`: The CSS file for styling the quiz application.
-
 ## API Usage
 
 This application uses the [Open Trivia Database API](https://opentdb.com/api_config.php) to fetch trivia questions.
 
-### Fetching Categories
-
-The categories are fetched from:
-
-```
-https://opentdb.com/api_category.php
-```
-
-### Fetching Questions
-
-Questions are fetched based on the selected category, difficulty, and type:
-
-```
-https://opentdb.com/api.php?amount=10&category={category}&difficulty={difficulty}&type={type}
-```
-
-## Customization
-
-You can customize the application by modifying the `src/Quiz.js` and `src/Quiz.css` files.
 
 ### Adding New Features
 
